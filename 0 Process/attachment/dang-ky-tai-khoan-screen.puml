@@ -1,0 +1,31 @@
+@startuml
+[*] --> TrangHome
+TrangHome : Trang chủ
+TrangHome --> FormDangKy : Nhấn nút Đăng ký
+TrangHome --> DangNhap : Nhấn nút Đăng nhập
+
+state FormDangKy {
+    [*] --> NhapThongTin
+    NhapThongTin : Nhập Họ và tên, Ngày sinh, Địa chỉ, Email
+    NhapThongTin --> Submit : Nhấn nút Sign Up
+    Submit : Hệ thống kiểm tra thông tin
+    Submit --> ThongTinThanhVien : Thông tin hợp lệ
+    Submit --> ThongBaoThatBai : Thông tin không hợp lệ
+}
+
+state ThongTinThanhVien {
+    [*] --> ChonThe
+    ChonThe : Chọn loại thẻ
+    ChonThe --> ThanhToan : Nhấn nút Purchase
+    ThanhToan : Hệ thống lưu thông tin tài khoản
+    ThanhToan --> ThongBaoThanhCong : Đăng ký thành công
+    ThanhToan --> ThongBaoThatBai : Đăng ký thất bại
+}
+
+ThongBaoThatBai : Hiển thị thông báo thất bại
+ThongBaoThatBai --> NhapThongTin : Nhấn nút Done
+
+ThongBaoThanhCong : Hiển thị thông báo thành công
+ThongBaoThanhCong --> TrangHome : Nhấn nút Done
+
+@enduml
